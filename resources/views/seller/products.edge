@@ -1,0 +1,43 @@
+@layout('layouts/main')
+
+@section('title')
+  My Products | SpectrumPro
+@end
+
+@section('content')
+<section class="max-w-6xl mx-auto my-12 px-4">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-4xl font-semibold text-gray-800 tracking-tight">My Products</h2>
+    <a href="{{ route('seller.create') }}" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all">
+      Add New Product
+    </a>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @each(product in products)
+      <div class="bg-white rounded-xl border border-gray-200 p-6 text-left transition-all duration-200 relative overflow-hidden">
+        <img src="{{ product.image }}" alt="{{ product.title }}" class="w-full h-48 object-contain rounded-lg mb-4 bg-gray-50 p-4">
+        <div class="text-base font-semibold text-gray-800 mb-2">{{ product.title }}</div>
+        <div class="text-green-600 text-lg font-bold mb-4">${{ product.price }}</div>
+        
+        <div class="flex gap-2">
+          <a href="{{ route('seller.edit', { id: product.id }) }}" class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold text-center hover:bg-blue-600 transition-all">
+            Edit
+          </a>
+          <form action="{{ route('seller.delete', { id: product.id }) }}" method="POST" class="flex-1">
+            {{ csrfField() }}
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition-all">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    @else
+      <div class="col-span-full text-center py-12 text-gray-500">
+        You haven't added any products yet. <a href="{{ route('seller.create') }}" class="text-green-600 hover:underline">Add your first product</a>
+      </div>
+    @end
+  </div>
+</section>
+@end

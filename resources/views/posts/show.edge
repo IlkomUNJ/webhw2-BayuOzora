@@ -1,0 +1,27 @@
+@layout('layout')
+
+@section('title')
+{{ post.title }}
+@end
+
+@section('content')
+<article>
+    <h2 style="margin-bottom: 1rem; color: #333;">{{ post.title }}</h2>
+
+    <p
+        style="color: #666; font-size: 0.9rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #eee;">
+        By <strong>{{ post.author }}</strong> • {{ post.date }}
+    </p>
+
+    <div style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 2rem; white-space: pre-wrap;">
+        {{ post.content }}
+    </div>
+
+    <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+        <a href="/posts"
+            style="display: inline-block; padding: 0.75rem 1.5rem; background: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-weight: 500;">
+            ← Back to All Posts
+        </a>
+    </div>
+</article>
+@end

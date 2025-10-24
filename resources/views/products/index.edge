@@ -1,0 +1,62 @@
+@layout('layouts/main')
+
+@section('title')
+  Shop | SpectrumPro
+@end
+
+@section('content')
+<section class="max-w-6xl mx-auto my-12 px-4">
+  <h2 class="text-4xl font-semibold text-gray-800 mb-8 text-center tracking-tight">Premium Eyewear Collection</h2>
+  
+  {{-- Search Form --}}
+  <div class="mb-8">
+    <form action="{{ route('products.search') }}" method="GET" class="flex gap-4 max-w-2xl mx-auto">
+      <input 
+        type="text" 
+        name="keyword" 
+        placeholder="Search products..." 
+        value="{{ search || '' }}"
+        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600"
+      >
+      <button type="submit" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all">
+        Search
+      </button>
+    </form>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @each(product in products.all())
+      <a href="{{ route('products.show', { id: product.id }) }}" class="bg-white rounded-xl border border-gray-200 p-6 text-left transition-all duration-200 cursor-pointer relative overflow-hidden block hover:-translate-y-1 hover:shadow-xl hover:border-green-400">
+        <img src="{{ product.image }}" alt="{{ product.title }}" class="w-full h-48 object-contain rounded-lg mb-4 bg-gray-50 p-4">
+        <div class="text-sm text-gray-400 mb-2">{{ product.seller.name }}</div>
+        <div class="flex justify-between items-start mb-2">
+          <div class="text-base font-semibold text-gray-800">{{ product.title }}</div>
+          <div class="flex flex-col gap-1">
+            <div class="text-green-600 text-lg font-bold">${{ product.price }}</div>
+          </div>
+        </div>
+      </a>
+    @else
+      <div class="col-span-full text-center py-12 text-gray-500">
+        No products found. @if(auth.user && auth.user.role === 'seller')
+          <a href="{{ route('seller.create') }}" class="text-green-600 hover:underline">Add your first product</a>
+        @endif
+      </div>
+    @end
+  </div>
+
+  {{-- Pagination --}}
+  @if(products.lastPage > 1)
+    <div class="mt-12 flex justify-center gap-2">
+      @each(page in products.getUrlsForRange(1, products.lastPage))
+        <a 
+          href="{{ page.url }}" 
+          class="px-4 py-2 rounded-lg {{ page.isActive ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100' }}"
+        >
+          {{ page.page }}
+        </a>
+      @end
+    </div>
+  @endif
+</section>
+@end

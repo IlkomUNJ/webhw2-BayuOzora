@@ -1,0 +1,49 @@
+@layout('layout')
+
+@section('title')
+Create New Post
+@end
+
+@section('content')
+<h2 style="margin-bottom: 1.5rem; color: #333;">Create New Post</h2>
+
+<form action="/posts" method="POST" style="max-width: 800px;">
+    <div style="margin-bottom: 1.5rem;">
+        <label for="title" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
+            Title
+        </label>
+        <input type="text" id="title" name="title" required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;"
+            placeholder="Enter post title">
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+        <label for="author" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
+            Author
+        </label>
+        <input type="text" id="author" name="author" required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;"
+            placeholder="Your name">
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+        <label for="content" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">
+            Content
+        </label>
+        <textarea id="content" name="content" rows="10" required
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; font-family: inherit;"
+            placeholder="Write your post content here..."></textarea>
+    </div>
+
+    <div style="display: flex; gap: 1rem;">
+        <button type="submit"
+            style="padding: 0.75rem 1.5rem; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;">
+            Create Post
+        </button>
+        <a href="/posts"
+            style="display: inline-block; padding: 0.75rem 1.5rem; background: #6c757d; color: #fff; text-decoration: none; border-radius: 4px; font-size: 1rem;">
+            Cancel
+        </a>
+    </div>
+</form>
+@end

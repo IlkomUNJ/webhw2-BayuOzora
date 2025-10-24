@@ -1,0 +1,40 @@
+@layout('layout')
+
+@section('title')
+About
+@end
+
+@section('content')
+<h2 style="margin-bottom: 1.5rem; color: #333;">About This Blog</h2>
+
+<div style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+    <p style="margin-bottom: 1rem;">
+        Welcome to my simple blog built with <strong>AdonisJS</strong>! This is a static blog showcase
+        demonstrating the power and simplicity of the AdonisJS framework.
+    </p>
+
+    <p style="margin-bottom: 1rem;">
+        This blog features a clean, minimalist design with a focus on readability and user experience.
+        All content is statically rendered using Edge templates.
+    </p>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">Technologies Used</h3>
+    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+        <li style="margin-bottom: 0.5rem;"><strong>AdonisJS 5</strong> - Node.js web framework</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Edge</strong> - Template engine</li>
+        <li style="margin-bottom: 0.5rem;"><strong>TypeScript</strong> - Programming language</li>
+    </ul>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">Contact</h3>
+    <p>
+        Feel free to reach out if you have any questions or feedback about this blog!
+    </p>
+</div>
+
+<div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee;">
+    <a href="/posts"
+        style="display: inline-block; padding: 0.75rem 1.5rem; background: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-weight: 500;">
+        ← Back to Posts
+    </a>
+</div>
+@end
